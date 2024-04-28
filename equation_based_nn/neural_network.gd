@@ -25,6 +25,10 @@ func run_equation(inputs_arg:Array):
 	y[0] = w[0] * x[0] + w[1]
 	y[1] = w[2] * x[1] + w[3]
 	return [y[0], y[1]]
+func get_weights():
+	return weights.duplicate(true)
+func set_weights(weights_arg):
+	weights = weights_arg
 	
 	
 	
