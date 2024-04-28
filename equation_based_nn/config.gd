@@ -1,12 +1,12 @@
-extends Node
-
-static var config = {}
-
-func _ready():
-	config = {
+class_name Config
+var config = {
+		"max_weight_random_value":1.0,
+		"min_weigth_random_value":-1.0
 	}
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _ready():
+	print("hai")
+	config = {
+		"max_weight_random_value":1.0,
+		"min_weight_random_value":-1.0
+	}

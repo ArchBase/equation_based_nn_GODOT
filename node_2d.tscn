@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cjjp8ouylsd3r"]
 
-[ext_resource type="Script" path="res://equation_based_nn/config.gd" id="1_qt3dp"]
+[ext_resource type="Script" path="res://main.gd" id="1_k1c0a"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_qt3dp")
+script = ExtResource("1_k1c0a")
