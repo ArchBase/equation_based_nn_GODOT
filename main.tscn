@@ -1,37 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjjp8ouylsd3r"]
+[gd_scene load_steps=14 format=3 uid="uid://cjjp8ouylsd3r"]
 
 [ext_resource type="PackedScene" uid="uid://ci52bv1m15cbs" path="res://cars/Doge.tscn" id="1_4f22a"]
 [ext_resource type="Script" path="res://main.gd" id="1_qv4o6"]
+[ext_resource type="Script" path="res://center_raycast.gd" id="3_jfdcd"]
+[ext_resource type="Script" path="res://left_raycast.gd" id="4_8j4jf"]
 [ext_resource type="Script" path="res://driver.gd" id="4_nojin"]
+[ext_resource type="Script" path="res://right_raycast.gd" id="5_gtct6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n32b1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hr5a4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lh1qg"]
-
-[sub_resource type="GDScript" id="GDScript_m4sht"]
-script/source = "extends RayCast3D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-
-	#print(view.camera)
-	pass # Replace with function body.
-
-var bonet = false
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if is_colliding():
-		#print(\"colliding\")
-		pass
-	else:
-		#print(\"not colliding\")
-		pass
-
-
-"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o7dmv"]
 size = Vector3(1.3, 0.8, 3.5)
@@ -64,17 +44,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29343, 0.16081, 6.18386)
 [node name="center" type="RayCast3D" parent="car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.784737, 0)
 target_position = Vector3(0, 0, -5)
-script = SubResource("GDScript_m4sht")
+script = ExtResource("3_jfdcd")
 
 [node name="left" type="RayCast3D" parent="car"]
 transform = Transform3D(0.967467, 0, 0.252998, 0, 1, 0, -0.252998, 0, 0.967467, 0, 0.693281, 0)
 target_position = Vector3(0, 0, -5)
-script = SubResource("GDScript_m4sht")
+script = ExtResource("4_8j4jf")
 
 [node name="right" type="RayCast3D" parent="car"]
 transform = Transform3D(0.99566, 0, -0.0930657, 0, 1, 0, 0.0930657, 0, 0.99566, 0.645909, 0.707406, 0)
 target_position = Vector3(0, 0, -5)
-script = SubResource("GDScript_m4sht")
+script = ExtResource("5_gtct6")
 
 [node name="Area3D2" type="Area3D" parent="car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0357795, -0.100409, 2.38168)
@@ -94,9 +74,11 @@ script = ExtResource("4_nojin")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.851298, -0.103263, 0.51442, 0.124662, 0.992174, -0.00713338, -0.509657, 0.0702012, 0.857509, 0, 3.02472, 0)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DirectionalLight3D"]
+transform = Transform3D(-0.970507, -3.72529e-09, -0.241075, -7.45058e-09, 1, 1.86265e-08, 0.241075, 1.11759e-08, -0.970506, -3.9413, 0, 7.16175)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.00482547, -0.280111, 0.959955, -0.0355479, 0.959408, 0.279773, -0.999356, -0.0327744, -0.014587, 7.58745, 4.36435, 3.62743)
-current = true
 
 [node name="obstacle" type="RigidBody3D" parent="."]
 
@@ -111,4 +93,3 @@ skeleton = NodePath("")
 
 [connection signal="body_entered" from="car/Area3D2" to="." method="_on_area_3d_2_body_entered"]
 [connection signal="body_exited" from="car/Area3D2" to="." method="_on_area_3d_2_body_exited"]
-[connection signal="body_entered" from="obstacle" to="." method="_on_rigid_body_3d_body_entered"]

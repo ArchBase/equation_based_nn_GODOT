@@ -8,14 +8,15 @@ var steer_target = 0
 
 
 func _physics_process(delta):
+	
 	var speed = linear_velocity.length()*Engine.get_frames_per_second()*delta
 	traction(speed)
 	$Hud/speed.text=str(round(speed*3.8))+"  KMPH"
 
 	var fwd_mps = transform.basis.x.x
-	steer_target = Input.get_action_strength("ui_left") - Input.get_action_strength("ui_right")
+	steer_target = Globals.steer_left - Globals.steer_right
 	steer_target *= STEER_LIMIT
-	if Input.is_action_pressed("ui_down"):
+	if Globals.brake > 0:
 	# Increase engine force at low speeds to make the initial acceleration faster.
 
 		if speed < 20 and speed != 0:
@@ -24,8 +25,7 @@ func _physics_process(delta):
 			engine_force = engine_force_value
 	else:
 		engine_force = 0
-	if Input.is_action_pressed("ui_up"):
-		
+	if Globals.accelerate > 0:
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if fwd_mps >= -1:
 			if speed < 30 and speed != 0:

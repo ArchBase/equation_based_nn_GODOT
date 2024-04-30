@@ -39,7 +39,8 @@ func generate_random_gradient():
 	var length = len(weights)
 	var gradient:Array = []
 	for i in range(length):
-		gradient.append(randf_range(Configuration.config["min"], Configuration.config["max_weight_random_value"]))
+		gradient.append(randf_range(Configuration.config["min_weigth_random_value"], Configuration.config["max_weight_random_value"]))
+	return gradient
 func apply_gradient(gradient):
 	for i in range(len(gradient)):
 		weights[i] += gradient[i]
