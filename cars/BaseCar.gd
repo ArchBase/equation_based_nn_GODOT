@@ -25,6 +25,7 @@ func _physics_process(delta):
 	else:
 		engine_force = 0
 	if Input.is_action_pressed("ui_up"):
+		
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if fwd_mps >= -1:
 			if speed < 30 and speed != 0:
@@ -55,3 +56,15 @@ func traction(speed):
 
 
 
+
+
+func _on_body_entered(body):
+	print("hai")
+
+
+func _on_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print("haidddddddddddddddddddddddd")
+
+
+func _on_area_3d_2_body_entered(body):
+	print("haidddddddddddddddddddddddd")

@@ -30,3 +30,5 @@ func _physics_process(delta):
 	last_lookat = last_lookat.lerp(follow_this.global_transform.origin, delta * speed)
 	
 	look_at(last_lookat, Vector3.UP)
+
+
