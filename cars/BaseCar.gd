@@ -19,19 +19,13 @@ func _physics_process(delta):
 	if Globals.brake > 0:
 	# Increase engine force at low speeds to make the initial acceleration faster.
 
-		if speed < 20 and speed != 0:
-			engine_force = clamp(engine_force_value * 3 / speed, 0, 300)
-		else:
-			engine_force = engine_force_value
+		engine_force = engine_force_value
 	else:
 		engine_force = 0
 	if Globals.accelerate > 0:
 		# Increase engine force at low speeds to make the initial acceleration faster.
 		if fwd_mps >= -1:
-			if speed < 30 and speed != 0:
-				engine_force = -clamp(engine_force_value * 10 / speed, 0, 300)
-			else:
-				engine_force = -engine_force_value
+			engine_force = -engine_force_value
 		else:
 			brake = 1
 	else:

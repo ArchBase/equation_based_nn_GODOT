@@ -19,7 +19,21 @@ func _init(no_of_weights_arg:int, max_count_of_y:int):
 	for i in range(max_count_of_y):
 		y.append(null)
 	
-	
+func run_equationi(inputs_arg:Array):
+	y[0] = 2
+	y[1] = 2
+	if inputs_arg[2] >= 1:
+		y[2] = 2
+	else:
+		y[2] = -2
+	if inputs_arg[1]:
+		y[1] = 2
+		y[0] = -2
+	if inputs_arg[0] >= 1:
+		y[3] = 2
+	else:
+		y[3] = -2
+	return[y[0], y[1], y[2], y[3]]
 func run_equation(inputs_arg:Array):
 	var x = inputs_arg
 	y[0] = (w[0]*x[0] + w[1]*x[1] + w[2]*x[2]) + w[3]

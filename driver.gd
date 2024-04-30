@@ -13,10 +13,11 @@ func _init(nn_arg:Equation_Network):
 	nn = nn_arg
 
 func drive_car():
-	var grad = nn.generate_random_gradient()
-	nn.apply_gradient(grad)
+	#var grad = nn.generate_random_gradient()
+	#nn.apply_gradient(nn.generate_random_gradient())
 	var instructions = nn.run_equation([Globals.ray_cast_left, Globals.ray_cast_center, Globals.ray_cast_right])
-	print(instructions)
+	#print(instructions)
+	#print(instructions)
 	Globals.accelerate = instructions[0]
 	Globals.brake = instructions[1]
 	if instructions[2] > 0:
@@ -27,5 +28,7 @@ func drive_car():
 		Globals.steer_right = 1
 	else:
 		Globals.steer_right = -1
+func _process(delta):
+	if Globals.drive:
+		drive_car()
 	
-
